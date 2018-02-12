@@ -9,25 +9,26 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:gravity="end"
         android:text="@string/name"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="end"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/ptEnterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/enterYourName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtName"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,12 +36,12 @@
         android:id="@+id/txtHowManyTimes"
         android:layout_width="239dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
         android:text="How many times can you ask for help"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtName"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="44dp" />
 
     <TextView
         android:id="@+id/helpTimes"
@@ -49,7 +50,7 @@
         android:layout_marginTop="36dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toEndOf="@+id/txtHowManyTimes"
         app:layout_constraintTop_toBottomOf="@+id/ptEnterName" />
 
@@ -63,20 +64,25 @@
         android:inputType="textPersonName"
         android:text="@string/enterFriendName"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAddFriend"
-        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHowManyTimes"
+        app:layout_constraintVertical_bias="0.165"
         android:layout_marginLeft="8dp" />
 
     <Button
         android:id="@+id/btnAddFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="84dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/addFriend"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpTimes"
-        android:layout_marginRight="20dp" />
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptEnterName"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginRight="16dp" />
 </android.support.constraint.ConstraintLayout>

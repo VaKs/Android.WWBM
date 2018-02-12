@@ -7,4 +7,7 @@
     <!-- settings -->
     <string name="name">Name:</string>
     <string name="enterYourName">Enter your Name</string>
+    <string name="howManyTimes">How many times can you ask for help</string>
+    <string name="addFriend">Add Friend</string>
+    <string name="enterFriendName">Enter your friend\'s name</string>
 </resources>
