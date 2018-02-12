@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">WWBM</string>
+    <string name="app_name">Who wants to be a millionaire</string>
+    <string name="play">Play</string>
+    <string name="credits">Credits</string>
+    <string name="scores">Scores</string>
+    <string name="settings">Settings</string>
+    <!-- settings -->
+    <string name="name">Name:</string>
+    <string name="enterYourName">Enter your Name</string>
 </resources>
