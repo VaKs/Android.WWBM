@@ -10,4 +10,8 @@
     <string name="howManyTimes">How many times can you ask for help</string>
     <string name="addFriend">Add Friend</string>
     <string name="enterFriendName">Enter your friend\'s name</string>
+
+    <!-- scores -->
+    <string name="local">Local</string>
+    <string name="Friends">Friends</string>
 </resources>
