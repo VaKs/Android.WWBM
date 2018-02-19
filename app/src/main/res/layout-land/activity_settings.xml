@@ -16,7 +16,8 @@
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/ptEnterName"
@@ -39,18 +40,8 @@
         android:layout_marginTop="60dp"
         android:text="How many times can you ask for help"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-    <TextView
-        android:id="@+id/helpTimes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toEndOf="@+id/txtHowManyTimes"
-        app:layout_constraintTop_toBottomOf="@+id/ptEnterName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        android:layout_marginLeft="156dp" />
 
     <EditText
         android:id="@+id/ptFriendName"
@@ -68,7 +59,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHowManyTimes"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.146"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="16dp" />
 
     <Button
         android:id="@+id/btnAddFriend"
@@ -76,10 +69,23 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="92dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginTop="8dp"
         android:text="@string/addFriend"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpTimes"
-        app:layout_constraintVertical_bias="0.941" />
+        android:layout_marginRight="36dp" />
+
+    <Spinner
+        android:id="@+id/spnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddFriend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toEndOf="@+id/txtHowManyTimes"
+        app:layout_constraintTop_toBottomOf="@+id/ptEnterName"
+        app:layout_constraintVertical_bias="0.55" />
 </android.support.constraint.ConstraintLayout>

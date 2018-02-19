@@ -40,5 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button credits = findViewById(R.id.btnCredits);
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CreditsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
