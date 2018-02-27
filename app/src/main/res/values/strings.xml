@@ -14,4 +14,8 @@
     <!-- scores -->
     <string name="local">Local</string>
     <string name="Friends">Friends</string>
+
+    <!-- play -->
+    <string name="txtQuestion">Question: </string>
+    <string name="txtPlay">Play for: </string>
 </resources>
