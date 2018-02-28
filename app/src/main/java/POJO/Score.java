@@ -1,6 +1,8 @@
 package POJO;
 
-import android.arch.persistence.room.*;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 /**
@@ -17,7 +19,7 @@ public class Score {
     @ColumnInfo(name = "score")
     private int score;
 
-    public Score(String author, int score) {
+    public Score(@NonNull String author,@NonNull int score) {
         this.author = author;
         this.score = score;
     }
