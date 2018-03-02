@@ -19,7 +19,7 @@ import databases.ScoreDatabase;
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class InstrumentedTest {
 
     static Context appContext = InstrumentationRegistry.getTargetContext();
     static ScoreDAO scoreDAO = ScoreDatabase.getInstance(appContext).scoreDAO();
@@ -48,7 +48,7 @@ public class ExampleInstrumentedTest {
         scoreDAO.clearScores();
     }
     @Test
-    public void dbAdd() throws Exception {
+    public void dbAddScore() throws Exception {
          try {
             scoreDAO.addScore(score);
             scoreDAO.addScore(score1);
@@ -72,7 +72,7 @@ public class ExampleInstrumentedTest {
 
     }
     @Test
-    public void dbList() throws Exception {
+    public void dbGetScores() throws Exception {
         try {
             List<Score> scoreListDb = scoreDAO.getScores();
             for(int i=0;i<=scoreListDb.size();i++){
@@ -85,7 +85,7 @@ public class ExampleInstrumentedTest {
         }
     }
     @Test
-    public void dbClear() throws Exception {
+    public void dbClearScores() throws Exception {
         try {
             scoreDAO.clearScores();
             List<Score> scoreListDb = scoreDAO.getScores();
