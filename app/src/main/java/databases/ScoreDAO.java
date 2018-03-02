@@ -17,7 +17,7 @@ public interface ScoreDAO {
 
     // Get all quotations from the database
     @Query("SELECT * FROM Scores")
-    List<Score> getQuotations();
+    List<Score> getScores();
 
     // Add a given quotation to the database
     @Insert
@@ -25,5 +25,5 @@ public interface ScoreDAO {
 
     // Delete all
     @Query("DELETE FROM Scores")
-    void clearScore();
+    void clearScores();
 }
