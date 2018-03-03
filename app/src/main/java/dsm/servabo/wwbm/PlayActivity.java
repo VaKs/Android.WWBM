@@ -1,5 +1,6 @@
 package dsm.servabo.wwbm;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -8,21 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import POJO.Question;
 
@@ -37,7 +29,7 @@ public class PlayActivity extends AppCompatActivity {
     Button a2;
     Button a3;
     Button a4;
-    TextView iconPrecent, iconCall, iconPublic;
+    TextView iconPrecent, iconCall, iconPublic, iconMoneda;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
@@ -49,6 +41,27 @@ public class PlayActivity extends AppCompatActivity {
         iconPrecent.setTypeface(font);
         iconPublic = findViewById(R.id.iconPublic);
         iconPublic.setTypeface(font);
+        iconMoneda = findViewById(R.id.iconMoneda);
+        iconMoneda.setTypeface(font);
+
+        iconPrecent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+            }
+        });
+        iconPublic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+            }
+        });
+        iconCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+            }
+        });
 
         final Intent starterIntent = getIntent();
         if (numPregunta == 0) {
