@@ -32,28 +32,31 @@ public class PlayActivity extends AppCompatActivity {
     Integer sigPremio = 1;
     Integer numPregunta = 0;
     SharedPreferences shared;
+    Button a1;
+    Button a2;
+    Button a3;
+    Button a4;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         final Intent starterIntent = getIntent();
-        if(numPregunta<questionList.size()) {
+        if (numPregunta == 0) {
             fillQuestionList();
+        }
+        if(numPregunta<questionList.size()) {
             shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
             setPremioYPreguntaTxt();
             setPreguntaText();
-            Button answer1 = findViewById(R.id.botRes1);
-            Button answer2 = findViewById(R.id.botRes2);
-            Button answer3 = findViewById(R.id.botRes3);
-            Button answer4 = findViewById(R.id.botRes4);
-            setButtonResText(answer1, answer2, answer3, answer4);
-            answer1.setOnClickListener(new View.OnClickListener() {
+            a1 = findViewById(R.id.botRes1);
+            a2 = findViewById(R.id.botRes2);
+            a3 = findViewById(R.id.botRes3);
+            a4 = findViewById(R.id.botRes4);
+            setButtonResText(a1,a2, a3, a4);
+            a1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (questionList.get(numPregunta).getRight().equals(1)) {
-                        premio = sigPremio;
-                        sigPremio = sigPremio * 2;
-                        numPregunta++;
-                        saveState();
+                    if (questionList.get(numPregunta).getRight().equals("1")) {
+                        preguntaAcertada();
                    /* finish();
                     startActivity(starterIntent);*/
                         //refresh();
@@ -63,30 +66,11 @@ public class PlayActivity extends AppCompatActivity {
                     }
                 }
             });
-            answer2.setOnClickListener(new View.OnClickListener() {
+            a2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (questionList.get(numPregunta).getRight().equals(2)) {
-                        premio = sigPremio;
-                        sigPremio = sigPremio * 2;
-                        numPregunta++;
-                        saveState();
-                   /* finish();
-                    startActivity(starterIntent);*/
-                        //refresh();
-                    } else {
-                       finDelJuego();
-                    }
-                }
-            });
-            answer3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (questionList.get(numPregunta).getRight().equals(3)) {
-                        premio = sigPremio;
-                        sigPremio = sigPremio * 2;
-                        numPregunta++;
-                        saveState();
+                    if (questionList.get(numPregunta).getRight().equals("2")) {
+                        preguntaAcertada();
                    /* finish();
                     startActivity(starterIntent);*/
                         //refresh();
@@ -95,14 +79,24 @@ public class PlayActivity extends AppCompatActivity {
                     }
                 }
             });
-            answer4.setOnClickListener(new View.OnClickListener() {
+           a3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (questionList.get(numPregunta).getRight().equals(4)) {
-                        premio = sigPremio;
-                        sigPremio = sigPremio * 2;
-                        numPregunta++;
-                        saveState();
+                    if (questionList.get(numPregunta).getRight().equals("3")) {
+                        preguntaAcertada();
+                   /* finish();
+                    startActivity(starterIntent);*/
+                        //refresh();
+                    } else {
+                        finDelJuego();
+                    }
+                }
+            });
+            a4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (questionList.get(numPregunta).getRight().equals("4")) {
+                        preguntaAcertada();
                    /* finish();
                     startActivity(starterIntent);*/
                         //refresh();
@@ -173,6 +167,15 @@ public class PlayActivity extends AppCompatActivity {
         saveState();
         Intent intent = new Intent(getApplicationContext(), null);
         startActivity(intent);
+    }
+    protected void preguntaAcertada(){
+        premio = sigPremio;
+        sigPremio = sigPremio * 2;
+        numPregunta++;
+        saveState();
+        setPremioYPreguntaTxt();
+        setPreguntaText();
+        setButtonResText(a1,a2,a3,a4);
     }
 
 }
