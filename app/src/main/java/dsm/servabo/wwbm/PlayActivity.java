@@ -2,6 +2,7 @@ package dsm.servabo.wwbm;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Document;
@@ -26,9 +27,39 @@ public class PlayActivity extends AppCompatActivity {
     ArrayList<Question> questionList = new ArrayList<>();
     Integer premio = 0;
     Integer sigPremio = 1;
+    Integer numPregunta = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+        fillQuestionList();
+        setPremioYPreguntaTxt();
+        setPreguntaText();
+        setButtonResText();
+    
+    }
+    protected void setPreguntaText(){
+        Question aux = questionList.get(numPregunta);
+        TextView pregunta = findViewById(R.id.txtPregunta);
+        pregunta.setText(aux.getText());
+    }
+    protected void setButtonResText(){
+        Question aux = questionList.get(numPregunta);
+        Button answer1 = findViewById(R.id.botRes1);
+        answer1.setText(aux.getAnswer1());
+        Button answer2 = findViewById(R.id.botRes2);
+        answer2.setText(aux.getAnswer2());
+        Button answer3 = findViewById(R.id.botRes3);
+        answer3.setText(aux.getAnswer3());
+        Button answer4 = findViewById(R.id.botRes4);
+        answer4.setText(aux.getAnswer4());
+    }
+    protected void setPremioYPreguntaTxt(){
+        TextView txtPremio = findViewById(R.id.txtPremio);
+        txtPremio.setText(sigPremio.toString());
+        TextView numePregunta = findViewById(R.id.numPreg);
+        numePregunta.setText(numPregunta.toString());
+    }
+    protected void fillQuestionList(){
         try{
             XmlPullParser parser = getResources().getXml(R.xml.questions);
             while(parser.getEventType() != XmlPullParser.END_DOCUMENT){
@@ -53,7 +84,6 @@ public class PlayActivity extends AppCompatActivity {
         catch(XmlPullParserException e){e.printStackTrace();}
         catch(IOException e){e.printStackTrace();}
         questionList.remove(0);
-        TextView txtPremio = (TextView) findViewById(R.id.txtPremio);
-        txtPremio.setText(sigPremio.toString());
+
     }
 }
