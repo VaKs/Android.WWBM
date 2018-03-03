@@ -16,18 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayActivity">
-
-        </activity>
-        <activity android:name=".SettingsActivity">
-
-        </activity>
-        <activity android:name=".ScoresActivity">
-
-        </activity>
-        <activity android:name=".CreditsActivity">
-
-        </activity>
+        <activity android:name=".PlayActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".ScoresActivity"></activity>
+        <activity android:name=".CreditsActivity"></activity>
+        <activity android:name=".EndGameActivity"></activity>
     </application>
 
 </manifest>

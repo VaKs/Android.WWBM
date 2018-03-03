@@ -145,9 +145,9 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void saveState(){
         SharedPreferences.Editor editor = shared.edit();
-        editor.putString("premio",premio.toString());
-        editor.putString("sigPremio",sigPremio.toString());
-        editor.putString("numPregunta",numPregunta.toString());
+        editor.putInt("premio",premio);
+        editor.putInt("sigPremio",sigPremio);
+        editor.putInt("numPregunta",numPregunta);
         editor.apply();
     }
     protected void finDelJuego(){
