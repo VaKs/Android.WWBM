@@ -57,9 +57,6 @@ public class PlayActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (questionList.get(numPregunta).getRight().equals("1")) {
                         preguntaAcertada();
-                   /* finish();
-                    startActivity(starterIntent);*/
-                        //refresh();
                     } else {
                         finDelJuego();
 
@@ -71,9 +68,6 @@ public class PlayActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (questionList.get(numPregunta).getRight().equals("2")) {
                         preguntaAcertada();
-                   /* finish();
-                    startActivity(starterIntent);*/
-                        //refresh();
                     } else {
                         finDelJuego();
                     }
@@ -84,9 +78,6 @@ public class PlayActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (questionList.get(numPregunta).getRight().equals("3")) {
                         preguntaAcertada();
-                   /* finish();
-                    startActivity(starterIntent);*/
-                        //refresh();
                     } else {
                         finDelJuego();
                     }
@@ -97,9 +88,6 @@ public class PlayActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (questionList.get(numPregunta).getRight().equals("4")) {
                         preguntaAcertada();
-                   /* finish();
-                    startActivity(starterIntent);*/
-                        //refresh();
                     } else {
                         finDelJuego();
                     }
@@ -157,15 +145,15 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void saveState(){
         SharedPreferences.Editor editor = shared.edit();
-        editor.putInt("premio",premio);
-        editor.putInt("sigPremio",sigPremio);
-        editor.putInt("numPregunta",numPregunta);
+        editor.putString("premio",premio.toString());
+        editor.putString("sigPremio",sigPremio.toString());
+        editor.putString("numPregunta",numPregunta.toString());
         editor.apply();
     }
-    //ESTE METODO FALTA POR ASIGNARLE EL VALOR DE LA ACTIVITY FIN DEL JUEGO
     protected void finDelJuego(){
         saveState();
-        Intent intent = new Intent(getApplicationContext(), null);
+        Intent intent = new Intent(getApplicationContext(), EndGameActivity.class);
+        finish();
         startActivity(intent);
     }
     protected void preguntaAcertada(){
@@ -177,5 +165,4 @@ public class PlayActivity extends AppCompatActivity {
         setPreguntaText();
         setButtonResText(a1,a2,a3,a4);
     }
-
 }
