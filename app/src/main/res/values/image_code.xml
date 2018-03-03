@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon_email">&#xf0e0;</string>
+    <string name="icon_password">&#xf084;</string>
+    <string name="icon_lock">&#xf023;</string>
+    <string name="icon_checkbox_checked">&#xf046;</string>
+    <string name="icon_eye">&#xf06e;</string>
+    <string name="icon_eye_closed">&#xf070;</string>
+    <string name="icon_percent">&#xf295;</string>
+    <string name="icon_phone">&#xf095;</string>
+    <string name="icon_phone_volume">&#xf2a0;</string>
+    <string name="icon_play">&#xf04b;</string>
+    <string name="icon_users">&#xf0c0;</string>
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_chart_bar">&#xf080;</string>
+    <string name="icon_chart_line">&#xf201;</string>
+    <string name="icon_clipboard_list">&#xf46d;</string>
+    <string name="icon_euro_sign">&#xf153;</string>
+    <string name="icon_info_circle">&#xf05a;</string>
+    <string name="icon_dollar_sign">&#xf155;</string>
+    <string name="icon_gear">&#xf013;</string>
+</resources>

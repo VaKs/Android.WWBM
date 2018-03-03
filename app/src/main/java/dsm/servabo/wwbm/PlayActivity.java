@@ -2,6 +2,7 @@ package dsm.servabo.wwbm;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,9 +37,19 @@ public class PlayActivity extends AppCompatActivity {
     Button a2;
     Button a3;
     Button a4;
+    TextView iconPrecent, iconCall, iconPublic;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        Typeface font = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+        iconCall = findViewById(R.id.iconCall);
+        iconCall.setTypeface(font);
+        iconPrecent = findViewById(R.id.iconCincuenta);
+        iconPrecent.setTypeface(font);
+        iconPublic = findViewById(R.id.iconPublic);
+        iconPublic.setTypeface(font);
+
         final Intent starterIntent = getIntent();
         if (numPregunta == 0) {
             fillQuestionList();

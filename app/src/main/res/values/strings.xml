@@ -18,6 +18,8 @@
     <!-- play -->
     <string name="txtQuestion">Question: </string>
     <string name="txtPlay">Play for: </string>
+    <string name="Lifelines">Lifelines: </string>
+
     <!--endgame -->
     <string name="txtEndGame">Game Finished, your score is: </string>
     <string name="txtRightAns">Right Answers: </string>
