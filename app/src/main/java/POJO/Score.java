@@ -9,45 +9,66 @@ import android.support.annotation.NonNull;
  * Created by servabo on 28/02/2018.
  */
 @Entity(tableName = "Scores")
-public class Score {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-    @NonNull
-    @ColumnInfo(name = "author")
-    private String author;
-    @NonNull
-    @ColumnInfo(name = "score")
-    private int score;
-
-    public Score(@NonNull String author,@NonNull int score) {
-        this.author = author;
-        this.score = score;
-    }
+public class Score implements Comparable<Score>{
+    @PrimaryKey
+            @NonNull
+    String name;
+    String scoring;
+    String longitude;
+    String latitude;
 
     public Score() {
     }
 
-    public int getId() {
-        return id;
+    public Score (String name, String scoring) {
+        this.name = name;
+        this.scoring = scoring;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    @Override
+    public int compareTo(Score o) {
+
+        if (Integer.parseInt(this.getScoring()) > Integer.parseInt(o.getScoring())) {
+            return 1;
+        }
+        else if (Integer.parseInt(this.getScoring()) < Integer.parseInt(o.getScoring())) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
 
-    public String getAuthor() {
-        return author;
+    public String getName() {
+        return name;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getScore() {
-        return score;
+    public String getScoring() {
+        return scoring;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScoring(String scoring) {
+        this.scoring = scoring;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 }

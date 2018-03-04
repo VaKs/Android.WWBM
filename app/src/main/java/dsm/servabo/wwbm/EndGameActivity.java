@@ -28,7 +28,7 @@ public class EndGameActivity extends AppCompatActivity {
 
         String autor = shared.getString("Nombre",getString(R.string.unknown));
 
-        final Score score = new Score(autor,nRAns);
+        final Score score = new Score(autor,nRAns.toString());
         new Thread(new Runnable() {
             @Override
             public void run(){

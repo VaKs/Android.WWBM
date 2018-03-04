@@ -2,40 +2,49 @@ package POJO;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.net.Uri.Builder;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+import dsm.servabo.wwbm.SettingsActivity;
 
 /**
  * Created by Usuario on 03/03/2018.
  */
 
-public class AsyncPutTask extends AsyncTask<Integer, Void, Void> {
+public class AsyncPostTask extends AsyncTask<String, Void, Void> {
     String username;
-    Integer score;
-    public AsyncPutTask(String username, Integer score){
+    String friend;
+    public AsyncPostTask(String username, String friend){
         this.username = username;
-        this.score = score;
+        this.friend = friend;
     }
     @Override
-    protected Void doInBackground(Integer... integers) {
+    protected Void doInBackground(String... strings) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https");
         builder.authority("wwtbamandroid.appspot.com");
         builder.appendPath("rest");
-        builder.appendPath("highscores");
+        builder.appendPath("friends");
         try{
             URL url = new URL(builder.build().toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("PUT");
+            connection.setRequestMethod("POST");
             connection.setDoInput(true);
             connection.setDoOutput(true);
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write(score);
             writer.write(username);
+            writer.write(friend);
             writer.flush();
             writer.close();
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());

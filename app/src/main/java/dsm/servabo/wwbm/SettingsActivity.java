@@ -2,11 +2,17 @@ package dsm.servabo.wwbm;
 
 
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import POJO.AsyncPostTask;
 
 /**
  * Created by servabo on 12/02/2018.
@@ -15,7 +21,7 @@ import android.widget.Spinner;
 public class SettingsActivity extends AppCompatActivity {
 
     SharedPreferences prefs;
-
+    String friend;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -23,8 +29,19 @@ public class SettingsActivity extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.spnNumber);
         String[] letra = {"0","1","2","3"};
+        EditText friendET = findViewById(R.id.ptFriendName);
+        friend = friendET.getText().toString();
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, letra));
         prefs = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
+        final EditText name = findViewById(R.id.ptEnterName);
+        Button btnAddFriend = findViewById(R.id.btnAddFriend);
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AsyncPostTask(name.getText().toString(),friend).execute();
+
+            }
+        });
     }
 
     @Override
@@ -55,6 +72,20 @@ public class SettingsActivity extends AppCompatActivity {
         super.onResume ();
 
     }
-
-
+    public boolean isNetworkConnected(int network){
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info;
+        switch (network){
+            case 0:
+                info = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                break;
+            case 1:
+                info = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                break;
+            default:
+                info = manager.getActiveNetworkInfo();
+                break;
+        }
+        return ((info != null) && (info.isConnected()));
+    }
 }
