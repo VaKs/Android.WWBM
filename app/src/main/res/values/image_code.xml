@@ -23,4 +23,5 @@
     <string name="icon_android">&#xf17b;</string>
     <string name="icon_github">&#xf09b;</string>
     <string name="icon_copyright">&#xf1f9;</string>
+    <string name="sign_out_alt">&#xf2f5;</string>
 </resources>

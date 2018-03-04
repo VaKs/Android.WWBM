@@ -25,6 +25,7 @@ import POJO.Question;
 
 import static android.graphics.Color.BLACK;
 import static android.graphics.Color.GREEN;
+import static android.graphics.Color.RED;
 import static android.graphics.Color.YELLOW;
 
 
@@ -39,7 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     Button a2;
     Button a3;
     Button a4;
-    TextView iconPrecent, iconCall, iconPublic, iconMoneda;
+    TextView iconPrecent, iconCall, iconPublic, iconMoneda, iconStop;
     Typeface font = null;
     ArrayList<Integer> premioList;
     String name;
@@ -48,6 +49,7 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
         premio = 0;
         sigPremio = 0;
         numPregunta = 0;
@@ -57,6 +59,8 @@ public class PlayActivity extends AppCompatActivity {
 
         iconMoneda = findViewById(R.id.iconMoneda);
         iconMoneda.setTypeface(font);
+        iconStop = findViewById(R.id.icnPlantarse);
+        iconStop.setTypeface(font);
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
         SharedPreferences.Editor editor;
@@ -129,6 +133,21 @@ public class PlayActivity extends AppCompatActivity {
                 }
             });
         }
+        TextView txtstand = findViewById(R.id.txtPlantarse);
+        txtstand.setBackgroundColor(RED);
+        txtstand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finDelJuego();
+            }
+        });
+        iconStop.setBackgroundColor(RED);
+        iconStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finDelJuego();
+            }
+        });
     }
     protected void setPreguntaText(){
         Question aux = questionList.get(numPregunta);
