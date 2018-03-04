@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">¿Quien quiere ser millonario?</string>
+    <string name="play">Jugar</string>
+    <string name="credits">Creditos</string>
+    <string name="scores">Puntuaciones</string>
+    <string name="settings">Configuración</string>
+    <string name="unknown">Desconocido</string>
+    <string name="name">Nombre:</string>
+    <string name="enterYourName">Introduzca su nombre</string>
+    <string name="howManyTimes">Cuantas veces puede pedir ayuda</string>
+    <string name="addFriend">Añadir Amigo</string>
+    <string name="enterFriendName">Intoduzca el nombre de su amigo</string>
+    <string name="Friends">Amigos</string>
+    <string name="txtQuestion">Pregunta:</string>
+    <string name="txtPlay">Total ganado:</string>
+    <string name="Lifelines">Comodines:</string>
+    <string name="stand">Plantarse</string>
+    <string name="txtEndGame">Juego terminado, su puntuacón es:</string>
+    <string name="txtRightAns">Preguntas Correctas:</string>
+    <string name="txtMoneyWon">"Dinero Ganado: "</string>
+    <string name="Authors">"Autores: "</string>
+    <string name="Agradecimientos">Agradecimientos:</string>
+</resources>

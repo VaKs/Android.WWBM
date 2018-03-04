@@ -13,7 +13,7 @@
     <string name="enterFriendName">Enter your friend\'s name</string>
 
     <!-- scores -->
-    <string name="local">Local</string>
+    <string name="local" translatable="false">Local</string>
     <string name="Friends">Friends</string>
 
     <!-- play -->
@@ -27,12 +27,12 @@
     <string name="txtMoneyWon">Money Won: </string>
 
     <!--credits-->
-    <string name="Copy">DSM 2017-2018 </string>
+    <string name="Copy" translatable="false">DSM 2017-2018 </string>
     <string name="Authors">Authors: </string>
-    <string name="Profe">David de Andrés</string>
-    <string name="stackoverflow">Stack Overflow</string>
-    <string name="androidDev">Android Developers</string>
-    <string name="Vacas">Sergio Vacas Bodoque</string>
-    <string name="David">David Guillem Mateu</string>
+    <string name="Profe" translatable="false">David de Andrés</string>
+    <string name="stackoverflow" translatable="false">Stack Overflow</string>
+    <string name="androidDev" translatable="false">Android Developers</string>
+    <string name="Vacas" translatable="false">Sergio Vacas Bodoque</string>
+    <string name="David" translatable="false">David Guillem Mateu</string>
     <string name="Agradecimientos">Special thanks:</string>
 </resources>

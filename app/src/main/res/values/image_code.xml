@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="icon_email">&#xf0e0;</string>
-    <string name="icon_password">&#xf084;</string>
-    <string name="icon_lock">&#xf023;</string>
-    <string name="icon_checkbox_checked">&#xf046;</string>
-    <string name="icon_eye">&#xf06e;</string>
-    <string name="icon_eye_closed">&#xf070;</string>
-    <string name="icon_percent">&#xf295;</string>
-    <string name="icon_phone">&#xf095;</string>
-    <string name="icon_phone_volume">&#xf2a0;</string>
-    <string name="icon_play">&#xf04b;</string>
-    <string name="icon_users">&#xf0c0;</string>
-    <string name="icon_user">&#xf007;</string>
-    <string name="icon_chart_bar">&#xf080;</string>
-    <string name="icon_chart_line">&#xf201;</string>
-    <string name="icon_clipboard_list">&#xf46d;</string>
-    <string name="icon_euro_sign">&#xf153;</string>
-    <string name="icon_info_circle">&#xf05a;</string>
-    <string name="icon_dollar_sign">&#xf155;</string>
-    <string name="icon_gear">&#xf013;</string>
-    <string name="icon_stack_overflow">&#xf16c;</string>
-    <string name="icon_android">&#xf17b;</string>
-    <string name="icon_github">&#xf09b;</string>
-    <string name="icon_copyright">&#xf1f9;</string>
-    <string name="sign_out_alt">&#xf2f5;</string>
+    <string name="icon_email" translatable="false">&#xf0e0;</string>
+    <string name="icon_password" translatable="false">&#xf084;</string>
+    <string name="icon_lock" translatable="false">&#xf023;</string>
+    <string name="icon_checkbox_checked" translatable="false">&#xf046;</string>
+    <string name="icon_eye" translatable="false">&#xf06e;</string>
+    <string name="icon_eye_closed" translatable="false">&#xf070;</string>
+    <string name="icon_percent" translatable="false">&#xf295;</string>
+    <string name="icon_phone" translatable="false">&#xf095;</string>
+    <string name="icon_phone_volume" translatable="false">&#xf2a0;</string>
+    <string name="icon_play" translatable="false">&#xf04b;</string>
+    <string name="icon_users" translatable="false">&#xf0c0;</string>
+    <string name="icon_user" translatable="false">&#xf007;</string>
+    <string name="icon_chart_bar" translatable="false">&#xf080;</string>
+    <string name="icon_chart_line" translatable="false">&#xf201;</string>
+    <string name="icon_clipboard_list" translatable="false">&#xf46d;</string>
+    <string name="icon_euro_sign" translatable="false">&#xf153;</string>
+    <string name="icon_info_circle" translatable="false">&#xf05a;</string>
+    <string name="icon_dollar_sign" translatable="false">&#xf155;</string>
+    <string name="icon_gear" translatable="false">&#xf013;</string>
+    <string name="icon_stack_overflow" translatable="false">&#xf16c;</string>
+    <string name="icon_android" translatable="false">&#xf17b;</string>
+    <string name="icon_github" translatable="false">&#xf09b;</string>
+    <string name="icon_copyright" translatable="false">&#xf1f9;</string>
+    <string name="sign_out_alt" translatable="false">&#xf2f5;</string>
 </resources>
