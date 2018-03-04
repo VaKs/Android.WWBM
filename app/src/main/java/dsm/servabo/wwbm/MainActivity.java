@@ -1,6 +1,7 @@
 package dsm.servabo.wwbm;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView iconPlay,iconSettings,iconAbout,iconScores;
+        Typeface font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+
+        iconPlay = findViewById(R.id.iconPlay);
+        iconPlay.setTypeface(font);
+        iconSettings = findViewById(R.id.iconSettings);
+        iconSettings.setTypeface(font);
+        iconScores = findViewById(R.id.iconScores);
+        iconScores.setTypeface(font);
+        iconAbout = findViewById(R.id.iconCredits);
+        iconAbout.setTypeface(font);
+
+
         Button play = findViewById(R.id.btnPlay);
+        play.setBackgroundColor(0);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button settings = findViewById(R.id.btnSettings);
+        settings.setBackgroundColor(0);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button scores = findViewById(R.id.btnScores);
+        scores.setBackgroundColor(0);
         scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button credits = findViewById(R.id.btnCredits);
+        credits.setBackgroundColor(0);
         credits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
