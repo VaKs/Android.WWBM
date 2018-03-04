@@ -32,10 +32,10 @@ public class InstrumentedTest {
     @Before
     public void declaraciones(){
 
-        score = new Score("Sergio",300);
-        score1 = new Score("David",400);
-        score2 = new Score("Sergio",1500);
-        score3 = new Score("David",1400);
+        score = new Score("Sergio","300");
+        score1 = new Score("David","400");
+        score2 = new Score("Sergio","1500");
+        score3 = new Score("David","1400");
 
         scoreList= new ArrayList<>();
         scoreList.add(score);
@@ -57,14 +57,14 @@ public class InstrumentedTest {
 
             List<Score> scoreList = scoreDAO.getScores();
 
-            assertEquals(score.getAuthor(),scoreList.get(0).getAuthor());
-            assertEquals(score.getScore(),scoreList.get(0).getScore());
-            assertEquals(score1.getAuthor(),scoreList.get(1).getAuthor());
-            assertEquals(score1.getScore(),scoreList.get(1).getScore());
-            assertEquals(score2.getAuthor(),scoreList.get(2).getAuthor());
-            assertEquals(score2.getScore(),scoreList.get(2).getScore());
-            assertEquals(score3.getAuthor(),scoreList.get(3).getAuthor());
-            assertEquals(score3.getScore(),scoreList.get(3).getScore());
+            assertEquals(score.getName(),scoreList.get(0).getName());
+            assertEquals(score.getScoring(),scoreList.get(0).getScoring());
+            assertEquals(score1.getName(),scoreList.get(1).getName());
+            assertEquals(score1.getScoring(),scoreList.get(1).getScoring());
+            assertEquals(score2.getName(),scoreList.get(2).getName());
+            assertEquals(score2.getScoring(),scoreList.get(2).getScoring());
+            assertEquals(score3.getName(),scoreList.get(3).getName());
+            assertEquals(score3.getScoring(),scoreList.get(3).getScoring());
 
         } catch (Exception e){
             System.out.print(e.toString());
@@ -76,8 +76,8 @@ public class InstrumentedTest {
         try {
             List<Score> scoreListDb = scoreDAO.getScores();
             for(int i=0;i<=scoreListDb.size();i++){
-                assertEquals(scoreListDb.get(i).getAuthor(),scoreList.get(i).getAuthor());
-                assertEquals(scoreListDb.get(i).getScore(),scoreList.get(i).getScore());
+                assertEquals(scoreListDb.get(i).getName(),scoreList.get(i).getName());
+                assertEquals(scoreListDb.get(i).getScoring(),scoreList.get(i).getScoring());
             }
 
         } catch (Exception e) {

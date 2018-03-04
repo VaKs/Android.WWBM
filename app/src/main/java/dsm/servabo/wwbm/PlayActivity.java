@@ -33,6 +33,7 @@ public class PlayActivity extends AppCompatActivity {
     Integer premio = 0;
     Integer sigPremio = 0;
     Integer numPregunta = 0;
+    Integer pregAcertada = 0;
     SharedPreferences shared;
     Button a1;
     Button a2;
@@ -41,24 +42,42 @@ public class PlayActivity extends AppCompatActivity {
     TextView iconPrecent, iconCall, iconPublic, iconMoneda;
     Typeface font = null;
     ArrayList<Integer> premioList;
+    String name;
+    int ayudas;
+    boolean fail;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-
+        premio = 0;
+        sigPremio = 0;
+        numPregunta = 0;
+        pregAcertada = 0;
+        fail = false;
         font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME_SOLID);
 
         iconMoneda = findViewById(R.id.iconMoneda);
         iconMoneda.setTypeface(font);
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
-        int nComodines=shared.getInt("Ayudas", 3);
-        iniciarComodines(nComodines);
-
-
+        SharedPreferences.Editor editor;
+        editor = shared.edit();
+        name = shared.getString("Nombre",getString(R.string.unknown));
+        ayudas = shared.getInt("Ayudas",3);
+        if(getSharedPreferences("SharedPrefetencesWWBM", MODE_PRIVATE) != null) {
+            editor.clear();
+            editor.apply();
+        }
+        editor = shared.edit();
+        if(name != null) {
+            editor.putString("Nombre", name);
+            editor.putInt("Ayudas",ayudas);
+        }
         final Intent starterIntent = getIntent();
         if (numPregunta == 0) {
             fillQuestionList();
             llenarListaPremios();
+            int nComodines=shared.getInt("Ayudas", 3);
+            iniciarComodines(nComodines);
         }
         if(numPregunta<questionList.size()) {
             setPremioYPreguntaTxt();
@@ -109,10 +128,7 @@ public class PlayActivity extends AppCompatActivity {
                     }
                 }
             });
-        }else{
-            finDelJuego();
         }
-
     }
     protected void setPreguntaText(){
         Question aux = questionList.get(numPregunta);
@@ -170,28 +186,36 @@ public class PlayActivity extends AppCompatActivity {
 
     }
     protected void saveState(){
-        SharedPreferences.Editor editor = shared.edit();
-        editor.clear();
+        SharedPreferences.Editor editor;
+        editor = shared.edit();
         editor.putInt("premio",premio);
         editor.putInt("sigPremio",sigPremio);
         editor.putInt("numPregunta",numPregunta);
+        editor.putInt("pregAcertada",pregAcertada);
         editor.apply();
     }
     protected void finDelJuego(){
+        numPregunta=0;
+        sigPremio=0;
         saveState();
         //new AsyncPutTask(shared.getString("nombre",null),premio).execute(); //TODO
         Intent intent = new Intent(getApplicationContext(), EndGameActivity.class);
-        finish();
         startActivity(intent);
+        finish();
     }
     protected void preguntaAcertada(){
         premio = premioList.get(sigPremio);
         sigPremio++;
         numPregunta++;
+        pregAcertada++;
         saveState();
-        setPremioYPreguntaTxt();
-        setPreguntaText();
-        setButtonResText(a1,a2,a3,a4);
+        if(numPregunta != 15) {
+            setPremioYPreguntaTxt();
+            setPreguntaText();
+            setButtonResText(a1, a2, a3, a4);
+        }else {
+            finDelJuego();
+        }
     }
 
     protected void iniciarComodines(int nComodines){
@@ -272,7 +296,6 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void llenarListaPremios(){
         premioList = new ArrayList<>();
-        premioList.add(0);
         premioList.add(100);
         premioList.add(200);
         premioList.add(300);
@@ -290,30 +313,24 @@ public class PlayActivity extends AppCompatActivity {
         premioList.add(1000000);
     }
     protected void preguntaFallada(){
-        if(sigPremio >= 4 && sigPremio<9){
-            sigPremio = 4;
+        if(sigPremio >= 5 && sigPremio<9){
+            sigPremio = 5;
             premio = premioList.get(sigPremio);
-            numPregunta++;
+            fail = true;
             saveState();
-            setPremioYPreguntaTxt();
-            setPreguntaText();
-            setButtonResText(a1,a2,a3,a4);
-        }else if(sigPremio>=9){
+            finDelJuego();
+        }else if(sigPremio>=10){
             sigPremio = 9;
             premio = premioList.get(sigPremio);
-            numPregunta++;
+            fail = true;
             saveState();
-            setPremioYPreguntaTxt();
-            setPreguntaText();
-            setButtonResText(a1,a2,a3,a4);
+            finDelJuego();
         }else{
             sigPremio = 0;
             premio = premioList.get(sigPremio);
-            numPregunta++;
+            fail = true;
             saveState();
-            setPremioYPreguntaTxt();
-            setPreguntaText();
-            setButtonResText(a1,a2,a3,a4);
+            finDelJuego();
         }
     }
     @Override
@@ -323,9 +340,26 @@ public class PlayActivity extends AppCompatActivity {
     }
     @Override
     public void onResume(){
+        if(numPregunta == 0){
+            SharedPreferences.Editor editor;
+            editor = shared.edit();
+            editor.clear();
+            editor.apply();
+            numPregunta =0;
+            premio=0;
+            sigPremio=0;
+            pregAcertada=0;
+            if(name != null) {
+                editor.putString("Nombre", name);
+                editor.putInt("Ayudas",ayudas);
+                editor.apply();
+            }
+        }
+        fail = false;
         premio = shared.getInt("premio",0);
         sigPremio = shared.getInt("sigPremio",0);
         numPregunta = shared.getInt("numPregunta", 0);
+        pregAcertada = shared.getInt("pregAcertada",0);
         setPremioYPreguntaTxt();
         setPreguntaText();
         a1 = findViewById(R.id.botRes1);

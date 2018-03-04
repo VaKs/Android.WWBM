@@ -17,7 +17,7 @@ public class EndGameActivity extends AppCompatActivity {
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
         TextView numRightAns = findViewById(R.id.numRightAns);
-        Integer nPreg = shared.getInt("numPregunta",0);
+        Integer nPreg = shared.getInt("pregAcertada",0);
         numRightAns.setText(nPreg.toString());
         TextView numMoneyWon = findViewById(R.id.numMoneyWon);
         Integer nRAns = shared.getInt("premio",0);
