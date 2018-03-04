@@ -31,10 +31,10 @@ import static android.graphics.Color.YELLOW;
 
 public class PlayActivity extends AppCompatActivity {
     ArrayList<Question> questionList = new ArrayList<>();
-    Integer premio = 0;
-    Integer sigPremio = 0;
-    Integer numPregunta = 0;
-    Integer pregAcertada = 0;
+    Integer premio=0;
+    Integer sigPremio =0;
+    Integer numPregunta=0;
+    Integer pregAcertada=0;
     SharedPreferences shared;
     Button a1;
     Button a2;
@@ -45,16 +45,9 @@ public class PlayActivity extends AppCompatActivity {
     ArrayList<Integer> premioList;
     String name;
     int ayudas;
-    boolean fail;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-
-        premio = 0;
-        sigPremio = 0;
-        numPregunta = 0;
-        pregAcertada = 0;
-        fail = false;
         font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME_SOLID);
 
         iconMoneda = findViewById(R.id.iconMoneda);
@@ -64,25 +57,23 @@ public class PlayActivity extends AppCompatActivity {
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
         SharedPreferences.Editor editor;
-        editor = shared.edit();
         name = shared.getString("Nombre",getString(R.string.unknown));
         ayudas = shared.getInt("Ayudas",3);
-        if(getSharedPreferences("SharedPrefetencesWWBM", MODE_PRIVATE) != null) {
-            editor.clear();
-            editor.apply();
-        }
+        premio = shared.getInt("premio",0);
+        numPregunta = shared.getInt("numPregunta",0);
+        sigPremio = shared.getInt("sigPremio",0);
+        pregAcertada = shared.getInt("pregAcertada",0);
+
         editor = shared.edit();
         if(name != null) {
             editor.putString("Nombre", name);
             editor.putInt("Ayudas",ayudas);
         }
         final Intent starterIntent = getIntent();
-        if (numPregunta == 0) {
-            fillQuestionList();
-            llenarListaPremios();
-            int nComodines=shared.getInt("Ayudas", 3);
-            iniciarComodines(nComodines);
-        }
+        fillQuestionList();
+        llenarListaPremios();
+        int nComodines=shared.getInt("Ayudas", 3);
+        iniciarComodines(nComodines);
         if(numPregunta<questionList.size()) {
             setPremioYPreguntaTxt();
             setPreguntaText();
@@ -175,7 +166,8 @@ public class PlayActivity extends AppCompatActivity {
         TextView txtPremio = findViewById(R.id.txtPremio);
         txtPremio.setText(premio.toString());
         TextView numePregunta = findViewById(R.id.numPreg);
-        numePregunta.setText(numPregunta.toString());
+        Integer numeroAMostrar = numPregunta+1;
+        numePregunta.setText(numeroAMostrar.toString());
     }
     protected void fillQuestionList(){
         try{
@@ -214,7 +206,7 @@ public class PlayActivity extends AppCompatActivity {
         editor.apply();
     }
     protected void finDelJuego(){
-        numPregunta=0;
+        numPregunta = 0;
         sigPremio=0;
         saveState();
         //new AsyncPutTask(shared.getString("nombre",null),premio).execute(); //TODO
@@ -332,22 +324,19 @@ public class PlayActivity extends AppCompatActivity {
         premioList.add(1000000);
     }
     protected void preguntaFallada(){
-        if(sigPremio >= 5 && sigPremio<9){
-            sigPremio = 5;
+        if(sigPremio >= 4 && sigPremio<9){
+            sigPremio = 4;
             premio = premioList.get(sigPremio);
-            fail = true;
             saveState();
             finDelJuego();
-        }else if(sigPremio>=10){
+        }else if(sigPremio>=9){
             sigPremio = 9;
             premio = premioList.get(sigPremio);
-            fail = true;
             saveState();
             finDelJuego();
         }else{
             sigPremio = 0;
-            premio = premioList.get(sigPremio);
-            fail = true;
+            premio = 0;
             saveState();
             finDelJuego();
         }
@@ -374,7 +363,6 @@ public class PlayActivity extends AppCompatActivity {
                 editor.apply();
             }
         }
-        fail = false;
         premio = shared.getInt("premio",0);
         sigPremio = shared.getInt("sigPremio",0);
         numPregunta = shared.getInt("numPregunta", 0);

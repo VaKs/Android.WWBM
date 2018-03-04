@@ -24,7 +24,7 @@ public class EndGameActivity extends AppCompatActivity {
         numMoneyWon.setText(nRAns.toString());
 
         String autor = shared.getString("Nombre",getString(R.string.unknown));
-
+        Integer nComodines = shared.getInt("Ayudas",3);
         final Score score = new Score(autor,nRAns.toString());
         new Thread(new Runnable() {
             @Override
@@ -34,6 +34,11 @@ public class EndGameActivity extends AppCompatActivity {
 
             }
         }).start();
-
+        SharedPreferences.Editor editor;
+        editor = shared.edit();
+        editor.clear();
+        editor.putString("Nombre", autor);
+        editor.putInt("Ayudas", nComodines);
+        editor.apply();
     }
 }

@@ -18,7 +18,7 @@
 
     <!-- play -->
     <string name="txtQuestion">Question: </string>
-    <string name="txtPlay">Play for: </string>
+    <string name="txtPlay">Total won: </string>
     <string name="Lifelines">Lifelines: </string>
     <string name="stand">Stand</string>
     <!--endgame -->
