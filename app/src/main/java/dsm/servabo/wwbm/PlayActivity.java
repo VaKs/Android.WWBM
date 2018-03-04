@@ -134,14 +134,14 @@ public class PlayActivity extends AppCompatActivity {
             });
         }
         TextView txtstand = findViewById(R.id.txtPlantarse);
-        txtstand.setBackgroundColor(RED);
+        txtstand.setTextColor(RED);
         txtstand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finDelJuego();
             }
         });
-        iconStop.setBackgroundColor(RED);
+        iconStop.setTextColor(RED);
         iconStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
