@@ -31,7 +31,7 @@ import static android.graphics.Color.YELLOW;
 public class PlayActivity extends AppCompatActivity {
     ArrayList<Question> questionList = new ArrayList<>();
     Integer premio = 0;
-    Integer sigPremio = 1;
+    Integer sigPremio = 0;
     Integer numPregunta = 0;
     SharedPreferences shared;
     Button a1;
@@ -40,6 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     Button a4;
     TextView iconPrecent, iconCall, iconPublic, iconMoneda;
     Typeface font = null;
+    ArrayList<Integer> premioList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
@@ -57,6 +58,7 @@ public class PlayActivity extends AppCompatActivity {
         final Intent starterIntent = getIntent();
         if (numPregunta == 0) {
             fillQuestionList();
+            llenarListaPremios();
         }
         if(numPregunta<questionList.size()) {
             setPremioYPreguntaTxt();
@@ -72,7 +74,7 @@ public class PlayActivity extends AppCompatActivity {
                     if (questionList.get(numPregunta).getRight().equals("1")) {
                         preguntaAcertada();
                     } else {
-                        finDelJuego();
+                        preguntaFallada();
 
                     }
                 }
@@ -83,7 +85,7 @@ public class PlayActivity extends AppCompatActivity {
                     if (questionList.get(numPregunta).getRight().equals("2")) {
                         preguntaAcertada();
                     } else {
-                        finDelJuego();
+                        preguntaFallada();
                     }
                 }
             });
@@ -93,7 +95,7 @@ public class PlayActivity extends AppCompatActivity {
                     if (questionList.get(numPregunta).getRight().equals("3")) {
                         preguntaAcertada();
                     } else {
-                        finDelJuego();
+                        preguntaFallada();
                     }
                 }
             });
@@ -103,7 +105,7 @@ public class PlayActivity extends AppCompatActivity {
                     if (questionList.get(numPregunta).getRight().equals("4")) {
                         preguntaAcertada();
                     } else {
-                        finDelJuego();
+                        preguntaFallada();
                     }
                 }
             });
@@ -169,6 +171,7 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void saveState(){
         SharedPreferences.Editor editor = shared.edit();
+        editor.clear();
         editor.putInt("premio",premio);
         editor.putInt("sigPremio",sigPremio);
         editor.putInt("numPregunta",numPregunta);
@@ -182,8 +185,8 @@ public class PlayActivity extends AppCompatActivity {
         startActivity(intent);
     }
     protected void preguntaAcertada(){
-        premio = sigPremio;
-        sigPremio = sigPremio * 2;
+        premio = premioList.get(sigPremio);
+        sigPremio++;
         numPregunta++;
         saveState();
         setPremioYPreguntaTxt();
@@ -266,5 +269,62 @@ public class PlayActivity extends AppCompatActivity {
 
 
 
+    }
+    protected void llenarListaPremios(){
+        premioList.add(0);
+        premioList.add(100);
+        premioList.add(200);
+        premioList.add(300);
+        premioList.add(500);
+        premioList.add(1000);
+        premioList.add(2000);
+        premioList.add(4000);
+        premioList.add(8000);
+        premioList.add(16000);
+        premioList.add(32000);
+        premioList.add(64000);
+        premioList.add(125000);
+        premioList.add(250000);
+        premioList.add(500000);
+        premioList.add(1000000);
+    }
+    protected void preguntaFallada(){
+        if(sigPremio >= 4 && sigPremio<9){
+            sigPremio = 4;
+            premio = premioList.get(sigPremio);
+            numPregunta++;
+            saveState();
+            setPremioYPreguntaTxt();
+            setPreguntaText();
+            setButtonResText(a1,a2,a3,a4);
+        }else if(sigPremio>=9){
+            sigPremio = 9;
+            premio = premioList.get(sigPremio);
+            numPregunta++;
+            saveState();
+            setPremioYPreguntaTxt();
+            setPreguntaText();
+            setButtonResText(a1,a2,a3,a4);
+        }else{
+            sigPremio = 0;
+            premio = premioList.get(sigPremio);
+            numPregunta++;
+            saveState();
+            setPremioYPreguntaTxt();
+            setPreguntaText();
+            setButtonResText(a1,a2,a3,a4);
+        }
+    }
+    @Override
+    public void onPause(){
+        saveState();
+        super.onPause();
+    }
+    @Override
+    public void onResume(){
+        premio = shared.getInt("premio",0);
+        sigPremio = shared.getInt("sigPremio",0);
+        numPregunta = shared.getInt("numPregunta", 0);
+        super.onResume();
     }
 }

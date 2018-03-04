@@ -30,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button play = findViewById(R.id.btnPlay);
         play.setBackgroundColor(0);
+        iconPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PlayActivity.class);
+                startActivity(intent);
+            }
+        });
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button settings = findViewById(R.id.btnSettings);
         settings.setBackgroundColor(0);
+        iconSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button scores = findViewById(R.id.btnScores);
         scores.setBackgroundColor(0);
+        iconScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ScoresActivity.class);
+                startActivity(intent);
+            }
+        });
         scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button credits = findViewById(R.id.btnCredits);
         credits.setBackgroundColor(0);
+        iconAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CreditsActivity.class);
+                startActivity(intent);
+            }
+        });
         credits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
