@@ -138,7 +138,7 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void setPremioYPreguntaTxt(){
         TextView txtPremio = findViewById(R.id.txtPremio);
-        txtPremio.setText(sigPremio.toString());
+        txtPremio.setText(premio.toString());
         TextView numePregunta = findViewById(R.id.numPreg);
         numePregunta.setText(numPregunta.toString());
     }
@@ -271,6 +271,7 @@ public class PlayActivity extends AppCompatActivity {
 
     }
     protected void llenarListaPremios(){
+        premioList = new ArrayList<>();
         premioList.add(0);
         premioList.add(100);
         premioList.add(200);
@@ -325,6 +326,13 @@ public class PlayActivity extends AppCompatActivity {
         premio = shared.getInt("premio",0);
         sigPremio = shared.getInt("sigPremio",0);
         numPregunta = shared.getInt("numPregunta", 0);
+        setPremioYPreguntaTxt();
+        setPreguntaText();
+        a1 = findViewById(R.id.botRes1);
+        a2 = findViewById(R.id.botRes2);
+        a3 = findViewById(R.id.botRes3);
+        a4 = findViewById(R.id.botRes4);
+        setButtonResText(a1,a2, a3, a4);
         super.onResume();
     }
 }
