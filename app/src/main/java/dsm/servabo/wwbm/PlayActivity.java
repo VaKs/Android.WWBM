@@ -18,6 +18,10 @@ import java.util.ArrayList;
 
 import POJO.Question;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.YELLOW;
+
 
 public class PlayActivity extends AppCompatActivity {
     ArrayList<Question> questionList = new ArrayList<>();
@@ -30,45 +34,26 @@ public class PlayActivity extends AppCompatActivity {
     Button a3;
     Button a4;
     TextView iconPrecent, iconCall, iconPublic, iconMoneda;
+    Typeface font = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        Typeface font = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
-        iconCall = findViewById(R.id.iconCall);
-        iconCall.setTypeface(font);
-        iconPrecent = findViewById(R.id.iconCincuenta);
-        iconPrecent.setTypeface(font);
-        iconPublic = findViewById(R.id.iconPublic);
-        iconPublic.setTypeface(font);
+        font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+
         iconMoneda = findViewById(R.id.iconMoneda);
         iconMoneda.setTypeface(font);
 
-        iconPrecent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-            }
-        });
-        iconPublic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-            }
-        });
-        iconCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-            }
-        });
+        shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
+        int nComodines=shared.getInt("Ayudas", 3);
+        iniciarComodines(nComodines);
+
 
         final Intent starterIntent = getIntent();
         if (numPregunta == 0) {
             fillQuestionList();
         }
         if(numPregunta<questionList.size()) {
-            shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
             setPremioYPreguntaTxt();
             setPreguntaText();
             a1 = findViewById(R.id.botRes1);
@@ -133,6 +118,16 @@ public class PlayActivity extends AppCompatActivity {
         answer2.setText(aux.getAnswer2());
         answer3.setText(aux.getAnswer3());
         answer4.setText(aux.getAnswer4());
+
+        answer1.setVisibility(View.VISIBLE);
+        answer2.setVisibility(View.VISIBLE);
+        answer3.setVisibility(View.VISIBLE);
+        answer4.setVisibility(View.VISIBLE);
+
+        answer1.setBackgroundColor(0);
+        answer2.setBackgroundColor(0);
+        answer3.setBackgroundColor(0);
+        answer4.setBackgroundColor(0);
     }
     protected void setPremioYPreguntaTxt(){
         TextView txtPremio = findViewById(R.id.txtPremio);
@@ -188,5 +183,82 @@ public class PlayActivity extends AppCompatActivity {
         setPremioYPreguntaTxt();
         setPreguntaText();
         setButtonResText(a1,a2,a3,a4);
+    }
+
+    protected void iniciarComodines(int nComodines){
+
+        iconCall = findViewById(R.id.iconCall);
+        iconCall.setTypeface(font);
+        iconPrecent = findViewById(R.id.iconCincuenta);
+        iconPrecent.setTypeface(font);
+        iconPublic = findViewById(R.id.iconPublic);
+        iconPublic.setTypeface(font);
+
+        iconPublic.setTextColor(GREEN);
+        iconCall.setTextColor(YELLOW);
+        iconPrecent.setTextColor(BLACK);
+
+        iconPublic.setVisibility(View.INVISIBLE);
+        iconCall.setVisibility(View.INVISIBLE);
+        iconPrecent.setVisibility(View.INVISIBLE);
+
+        if(nComodines==0) return;
+        if(nComodines>0){
+            iconPublic.setVisibility(View.VISIBLE);
+            iconPublic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Question actualQuestion = questionList.get(numPregunta);
+                    int publico=Integer.parseInt(actualQuestion.getAudience());
+                    if(publico==1) a1.setBackgroundColor(GREEN);
+                    if(publico==2) a2.setBackgroundColor(GREEN);
+                    if(publico==3) a3.setBackgroundColor(GREEN);
+                    if(publico==4) a4.setBackgroundColor(GREEN);
+
+                    iconPublic.setVisibility(View.INVISIBLE);
+
+                }
+            });
+        }
+        if(nComodines>1){
+            iconCall.setVisibility(View.VISIBLE);
+            iconCall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Question actualQuestion = questionList.get(numPregunta);
+                    int llamada=Integer.parseInt(actualQuestion.getPhone());
+                    if(llamada==1) a1.setBackgroundColor(YELLOW);
+                    if(llamada==2) a2.setBackgroundColor(YELLOW);
+                    if(llamada==3) a3.setBackgroundColor(YELLOW);
+                    if(llamada==4) a4.setBackgroundColor(YELLOW);
+
+                    iconCall.setVisibility(View.INVISIBLE);
+
+                }
+            });
+        }
+        if(nComodines>2){
+            iconPrecent.setVisibility(View.VISIBLE);
+            iconPrecent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Question actualQuestion = questionList.get(numPregunta);
+                    int cincuenta1=Integer.parseInt(actualQuestion.getFifty1());
+                    int cincuenta2=Integer.parseInt(actualQuestion.getFifty2());
+
+                    if(cincuenta1==1 || cincuenta2 ==1) a1.setVisibility(View.INVISIBLE);
+                    if(cincuenta1==2 || cincuenta2 ==2) a2.setVisibility(View.INVISIBLE);
+                    if(cincuenta1==3 || cincuenta2 ==3) a3.setVisibility(View.INVISIBLE);
+                    if(cincuenta1==4 || cincuenta2 ==4) a4.setVisibility(View.INVISIBLE);
+
+                    iconPrecent.setVisibility(View.INVISIBLE);
+
+                }
+            });
+        }
+
+
+
     }
 }
