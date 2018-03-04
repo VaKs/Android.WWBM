@@ -19,4 +19,8 @@
     <string name="icon_info_circle">&#xf05a;</string>
     <string name="icon_dollar_sign">&#xf155;</string>
     <string name="icon_gear">&#xf013;</string>
+    <string name="icon_stack_overflow">&#xf16c;</string>
+    <string name="icon_android">&#xf17b;</string>
+    <string name="icon_github">&#xf09b;</string>
+    <string name="icon_copyright">&#xf1f9;</string>
 </resources>

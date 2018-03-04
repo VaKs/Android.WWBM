@@ -44,7 +44,7 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+        font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME_SOLID);
 
         iconMoneda = findViewById(R.id.iconMoneda);
         iconMoneda.setTypeface(font);
@@ -176,7 +176,7 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void finDelJuego(){
         saveState();
-        //new AsyncPutTask(shared.getString("nombre",null),premio).execute();
+        //new AsyncPutTask(shared.getString("nombre",null),premio).execute(); //TODO
         Intent intent = new Intent(getApplicationContext(), EndGameActivity.class);
         finish();
         startActivity(intent);

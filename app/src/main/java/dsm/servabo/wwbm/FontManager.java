@@ -14,7 +14,9 @@ import android.widget.TextView;
 public class FontManager
 {
     public static final String ROOT = "fonts/",
-            FONTAWESOME = ROOT + "fontawesome-5-solid.otf";
+            FONTAWESOME_SOLID = ROOT + "fontawesome-5-solid.otf",
+            FONTAWESOME_BRAND = ROOT + "fontawesome-5-Brands.otf",
+            FONTAWESOME_REGULAR = ROOT + "fontawesome-5-Regular.otf";
 
     public static Typeface getTypeface(Context context, String font) {
         return Typeface.createFromAsset(context.getAssets(), font);

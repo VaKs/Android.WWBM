@@ -25,4 +25,14 @@
     <string name="txtEndGame">Game Finished, your score is: </string>
     <string name="txtRightAns">Right Answers: </string>
     <string name="txtMoneyWon">Money Won: </string>
+
+    <!--credits-->
+    <string name="Copy">DSM 2017-2018 </string>
+    <string name="Authors">Authors: </string>
+    <string name="Profe">David de Andrés</string>
+    <string name="stackoverflow">Stack Overflow</string>
+    <string name="androidDev">Android Developers</string>
+    <string name="Vacas">Sergio Vacas Bodoque</string>
+    <string name="David">David Guillem Mateu</string>
+    <string name="Agradecimientos">Special thanks:</string>
 </resources>

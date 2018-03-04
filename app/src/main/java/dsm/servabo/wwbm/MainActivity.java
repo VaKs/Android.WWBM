@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView iconPlay,iconSettings,iconAbout,iconScores;
-        Typeface font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+        Typeface font= FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME_SOLID);
 
         iconPlay = findViewById(R.id.iconPlay);
         iconPlay.setTypeface(font);
