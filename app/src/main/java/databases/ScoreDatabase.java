@@ -20,7 +20,7 @@ public abstract class ScoreDatabase extends RoomDatabase {
     public synchronized static ScoreDatabase getInstance(Context context) {
         if (database == null) {
             database = Room.databaseBuilder(context, ScoreDatabase.class, "WWBM_db")
-                    .allowMainThreadQueries() // This should only be used for testing
+                    //.allowMainThreadQueries() // This should only be used for testing
                     .build();
         }
         return database;

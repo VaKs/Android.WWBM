@@ -1,15 +1,13 @@
 package dsm.servabo.wwbm;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import POJO.Score;
 import databases.ScoreDAO;
@@ -20,12 +18,14 @@ import databases.ScoreDatabase;
  */
 
 public class ScoresActivity extends AppCompatActivity {
+    Handler handler=null;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
-        ArrayList<String> listItemsLocal=new ArrayList<>();
+
+        final ArrayList<String> listItemsLocal=new ArrayList<>();
         ArrayList<String> listItemsFriends=new ArrayList<>();
         ArrayAdapter<String> adapterLocal, adapterFriends;
         ListView listLocal = findViewById(R.id.listLocal);
@@ -39,9 +39,17 @@ public class ScoresActivity extends AppCompatActivity {
 
 
         // items para la pestaña local
-        for (Score score : scoreDAO.getScores()) {
-            listItemsFriends.add(score.getAuthor()+" "+score.getScore());
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run(){
+                ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
+                for (Score score : scoreDAO.getScores()) {
+                    listItemsLocal.add(score.getAuthor()+"      "+score.getScore());
+                }
+
+            }
+        }).start();
+
 
         // items para la pestaña Friends  //TODO
         listItemsFriends.add("Item 2.1");

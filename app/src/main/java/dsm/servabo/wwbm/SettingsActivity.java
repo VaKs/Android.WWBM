@@ -50,8 +50,8 @@ public class SettingsActivity extends AppCompatActivity {
         EditText name = findViewById(R.id.ptEnterName);
         Spinner ayudas = findViewById(R.id.spnNumber);
 
-        name.setText(prefs.getString("Nombre","aaa"));
-        ayudas.setSelection(prefs.getInt("Ayudas", 1));
+        name.setText(prefs.getString("Nombre",getString(R.string.unknown)));
+        ayudas.setSelection(prefs.getInt("Ayudas", 0));
         super.onResume ();
 
     }
