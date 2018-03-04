@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import POJO.Score;
 import databases.ScoreDAO;
 import databases.ScoreDatabase;
@@ -15,8 +14,6 @@ public class EndGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
-
-
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
         TextView numRightAns = findViewById(R.id.numRightAns);

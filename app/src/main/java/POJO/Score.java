@@ -2,6 +2,7 @@ package POJO;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,17 +11,23 @@ import android.support.annotation.NonNull;
  */
 @Entity(tableName = "Scores")
 public class Score implements Comparable<Score>{
-    @PrimaryKey
-            @NonNull
-    String name;
-    String scoring;
-    String longitude;
-    String latitude;
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @NonNull
+    @ColumnInfo(name = "name")
+    private String name;
+    @NonNull
+    @ColumnInfo(name = "scoring")
+    private String scoring;
+    private String longitude;
+    private String latitude;
+
+    @Ignore
     public Score() {
     }
 
-    public Score (String name, String scoring) {
+    public Score (@NonNull String name, @NonNull String scoring) {
         this.name = name;
         this.scoring = scoring;
     }
@@ -38,6 +45,14 @@ public class Score implements Comparable<Score>{
         else {
             return 0;
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

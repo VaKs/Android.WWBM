@@ -56,14 +56,14 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
             }
         }).start();
 
-
+/*
         // items para la pestaña Friends  //TODO
         String username = prefs.getString("name",null);
         new AsyncGetTask().execute(username);
         for(int i = 0; i<scoreList.size();i++){
             listItemsFriends.add(scoreList.get(i).getName()+"   "+scoreList.get(i).getScoring());
         }
-
+*/
         // inicializar y pintar pestañas
         TabHost host = findViewById(R.id.tabHost);
         host.setup();

@@ -176,7 +176,7 @@ public class PlayActivity extends AppCompatActivity {
     }
     protected void finDelJuego(){
         saveState();
-        new AsyncPutTask(shared.getString("nombre",null),premio).execute();
+        //new AsyncPutTask(shared.getString("nombre",null),premio).execute();
         Intent intent = new Intent(getApplicationContext(), EndGameActivity.class);
         finish();
         startActivity(intent);
