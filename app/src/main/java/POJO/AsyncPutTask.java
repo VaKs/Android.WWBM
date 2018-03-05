@@ -3,6 +3,9 @@ package POJO;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -14,11 +17,10 @@ import java.net.URL;
  */
 
 public class AsyncPutTask extends AsyncTask<Integer, Void, Void> {
-    String username;
-    Integer score;
+    Score score;
     public AsyncPutTask(String username, Integer score){
-        this.username = username;
-        this.score = score;
+        this.score=new Score(username,score.toString());
+
     }
     @Override
     protected Void doInBackground(Integer... integers) {
@@ -27,6 +29,10 @@ public class AsyncPutTask extends AsyncTask<Integer, Void, Void> {
         builder.authority("wwtbamandroid.appspot.com");
         builder.appendPath("rest");
         builder.appendPath("highscores");
+        String req = "name="+score.getName()+"&score="+score.getScoring();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+
         try{
             URL url = new URL(builder.build().toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -34,8 +40,7 @@ public class AsyncPutTask extends AsyncTask<Integer, Void, Void> {
             connection.setDoInput(true);
             connection.setDoOutput(true);
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write(score);
-            writer.write(username);
+            writer.write(req);
             writer.flush();
             writer.close();
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());

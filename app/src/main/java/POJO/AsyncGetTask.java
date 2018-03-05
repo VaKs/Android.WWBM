@@ -8,49 +8,54 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
+
+import dsm.servabo.wwbm.ScoresActivity;
 
 /**
  * Created by Usuario on 04/03/2018.
  */
 
-public class AsyncGetTask extends AsyncTask<String,Void,ArrayList<Score>> {
-    public AsyncResponse delegate = null;
-    Score response = new Score();
-    ArrayList<Score> scoreList;
+public class AsyncGetTask extends AsyncTask<String, Void, ScoreList> {
+    public AsyncResponse delegate;
+    private WeakReference<ScoresActivity> activity;
+    ScoreList scoreList1= new ScoreList();
+
+
+    public AsyncGetTask(ScoresActivity activity) {
+        this.activity = new WeakReference<>(activity);
+    }
     @Override
-    protected ArrayList<Score> doInBackground(String... strings) {
+    protected ScoreList doInBackground(String... strings) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https");
         builder.authority("wwtbamandroid.appspot.com");
         builder.appendPath("rest");
         builder.appendPath("highscores");
-        String username = strings[0];
+        builder.appendQueryParameter("name",strings[0]);
         try{
             URL url = new URL(builder.build().toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("PUT");
+            connection.setRequestMethod("GET");
             connection.setDoInput(true);
-            connection.setDoOutput(true);
-            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write(username);
-            writer.flush();
-            writer.close();
+            //connection.getResponseCode()==
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());
             GsonBuilder gsonBuilder = new GsonBuilder();
             Gson gson = gsonBuilder.create();
-            response = gson.fromJson(reader,Score.class);
-            scoreList.add(response);
+            scoreList1 = gson.fromJson(reader,ScoreList.class);
             reader.close();
             connection.disconnect();
         }catch(IOException e){e.printStackTrace();}
-        return scoreList;
+        return scoreList1;
     }
-    protected void onPostExecute(){
-        delegate.processFinish(scoreList);
+
+    @Override
+    protected void onPostExecute(ScoreList scoreList) {
+        //delegate.processFinish(scoreList);
+        activity.get().processFinish(scoreList);
     }
 
 }

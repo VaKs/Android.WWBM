@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 
 public interface AsyncResponse {
-    void processFinish(ArrayList<Score> response);
+    void processFinish(ScoreList response);
 }

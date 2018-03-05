@@ -36,6 +36,7 @@ public class AsyncPostTask extends AsyncTask<String, Void, Void> {
         builder.authority("wwtbamandroid.appspot.com");
         builder.appendPath("rest");
         builder.appendPath("friends");
+        String req = "name="+username+"&"+"friend_name="+friend;
         try{
             URL url = new URL(builder.build().toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -43,8 +44,7 @@ public class AsyncPostTask extends AsyncTask<String, Void, Void> {
             connection.setDoInput(true);
             connection.setDoOutput(true);
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write(username);
-            writer.write(friend);
+            writer.write(req);
             writer.flush();
             writer.close();
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());

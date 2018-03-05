@@ -209,7 +209,7 @@ public class PlayActivity extends AppCompatActivity {
         numPregunta = 0;
         sigPremio=0;
         saveState();
-        //new AsyncPutTask(shared.getString("nombre",null),premio).execute(); //TODO
+        new AsyncPutTask(shared.getString("nombre","desconocido"),premio).execute(); //TODO
         Intent intent = new Intent(getApplicationContext(), EndGameActivity.class);
         startActivity(intent);
         finish();

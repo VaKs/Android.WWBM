@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.spnNumber);
         String[] letra = {"0","1","2","3"};
-        EditText friendET = findViewById(R.id.ptFriendName);
+        final EditText friendET = findViewById(R.id.ptFriendName);
         friend = friendET.getText().toString();
         spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, letra));
         prefs = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncPostTask(name.getText().toString(),friend).execute();
+                new AsyncPostTask(name.getText().toString(),friendET.getText().toString()).execute();
 
             }
         });
