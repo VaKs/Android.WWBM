@@ -5,6 +5,8 @@
     <string name="scores">Scores</string>
     <string name="settings">Settings</string>
     <string name="unknown">Unknown</string>
+    <string name="NoConexion">There is a problem with the Server</string>
+    <string name="DBProblem">There is some problem with the Database</string>
     <!-- settings -->
     <string name="name">Name:</string>
     <string name="enterYourName">Enter your Name</string>

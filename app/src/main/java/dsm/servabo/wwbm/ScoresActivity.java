@@ -1,8 +1,10 @@
 package dsm.servabo.wwbm;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -30,12 +32,13 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
     final ArrayList<String> listItemsLocal=new ArrayList<>();
     ArrayList<String> listItemsFriends=new ArrayList<>();
     ArrayAdapter<String> adapterLocal, adapterFriends;
+    AlertDialog.Builder builder;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-
+        builder = new AlertDialog.Builder(this);
 
         ListView listLocal = findViewById(R.id.listLocal);
         ListView listFriends =findViewById(R.id.listFriends);
@@ -53,19 +56,24 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
         new Thread(new Runnable() {
             @Override
             public void run(){
-                ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
-                for (Score score : scoreDAO.getScores()) {
-                    listItemsLocal.add(score.getName()+"      "+score.getScoring());
+                try{
+                    ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
+                    for (Score score : scoreDAO.getScores()) {
+                        listItemsLocal.add(score.getName()+"      "+score.getScoring());
+                    }
+                } catch(Exception e){
+                    builder.setMessage(getString(R.string.DBProblem));
+                    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}});
+                    builder.create().show();
                 }
 
             }
         }).start();
 
         // items para la pestaña Friends
-        // TODO: controlar rebentones
-
         String username = prefs.getString("Nombre","unknown");
-
         new AsyncGetTask(this).execute(username);
 
 
@@ -87,8 +95,16 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
     @Override
     public void processFinish(ScoreList response) {
         this.scoreList=response;
-        for (int i = 0; i < scoreList.getScores().size(); i++) {
-            listItemsFriends.add(scoreList.getScores().get(i).getName() + "   " + scoreList.getScores().get(i).getScoring());
+        if(scoreList.getScores()!=null) {
+            for (int i = 0; i < scoreList.getScores().size(); i++) {
+                listItemsFriends.add(scoreList.getScores().get(i).getName() + "   " + scoreList.getScores().get(i).getScoring());
+            }
+        } else{
+            builder.setMessage(getString(R.string.NoConexion));
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {}});
+            builder.create().show();
         }
     }
 }

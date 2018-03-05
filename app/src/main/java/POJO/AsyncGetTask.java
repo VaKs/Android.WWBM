@@ -41,20 +41,21 @@ public class AsyncGetTask extends AsyncTask<String, Void, ScoreList> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
-            //connection.getResponseCode()==
-            InputStreamReader reader = new InputStreamReader(connection.getInputStream());
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            Gson gson = gsonBuilder.create();
-            scoreList1 = gson.fromJson(reader,ScoreList.class);
-            reader.close();
+            if(connection.getResponseCode()>=200 && connection.getResponseCode()<300 ) {
+                InputStreamReader reader = new InputStreamReader(connection.getInputStream());
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                Gson gson = gsonBuilder.create();
+                scoreList1 = gson.fromJson(reader, ScoreList.class);
+                reader.close();
+            }
             connection.disconnect();
-        }catch(IOException e){e.printStackTrace();}
+
+        }catch(Exception e){e.printStackTrace();}
         return scoreList1;
     }
 
     @Override
     protected void onPostExecute(ScoreList scoreList) {
-        //delegate.processFinish(scoreList);
         activity.get().processFinish(scoreList);
     }
 

@@ -1,6 +1,8 @@
 package dsm.servabo.wwbm;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -10,10 +12,13 @@ import databases.ScoreDatabase;
 
 public class EndGameActivity extends AppCompatActivity {
     SharedPreferences shared;
+    AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
+
+        builder = new AlertDialog.Builder(this);
 
         shared = getApplicationContext().getSharedPreferences("SharedPreferencesWWBM", MODE_PRIVATE);
         TextView numRightAns = findViewById(R.id.numRightAns);
@@ -29,8 +34,16 @@ public class EndGameActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run(){
-                ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
-                scoreDAO.addScore(score);
+                try {
+                    ScoreDAO scoreDAO = ScoreDatabase.getInstance(getApplicationContext()).scoreDAO();
+                    scoreDAO.addScore(score);
+                } catch(Exception e){
+                    builder.setMessage(getString(R.string.DBProblem));
+                    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}});
+                    builder.create().show();
+            }
 
             }
         }).start();

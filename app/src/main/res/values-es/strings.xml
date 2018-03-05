@@ -6,6 +6,8 @@
     <string name="scores">Puntuaciones</string>
     <string name="settings">Configuración</string>
     <string name="unknown">Desconocido</string>
+    <string name="NoConexion">Ha habiado un problema con el servidor</string>
+    <string name="DBProblem">Se ha producido un problema con la base de datos</string>
     <string name="name">Nombre:</string>
     <string name="enterYourName">Introduzca su nombre</string>
     <string name="howManyTimes">Cuantas veces puede pedir ayuda</string>
