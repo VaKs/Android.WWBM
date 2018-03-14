@@ -10,7 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -78,7 +81,25 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
         // items para la pestaña Friends
         String username = prefs.getString("Nombre","unknown");
         //new AsyncGetTask(this).execute(username);
-        new AsyncGetTaskFireBaseImp(this).execute("Algo");
+        //new AsyncGetTaskFireBaseImp(this).execute("Algo");
+        //FIREBASE
+        Firebase firebase;
+        Firebase.setAndroidContext(this);
+        firebase = new Firebase("https://proyectoprueba-17d4b.firebaseio.com/scores");
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot scoreSnapshot : dataSnapshot.getChildren()) {
+                    Score score = scoreSnapshot.getValue(Score.class);
+                    listItemsFriends.add(score.getName() + "   " + score.getScoring());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
 
         // inicializar y pintar pestañas

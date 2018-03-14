@@ -44,11 +44,9 @@ public class AsyncGetTaskFireBaseImp extends AsyncTask<String, Void, ScoreList> 
     }
     @Override
     protected ScoreList doInBackground(String... strings) {
+
         Firebase.setAndroidContext(activity.get().getApplicationContext());
         firebase = new Firebase("https://proyectoprueba-17d4b.firebaseio.com/scores");
-
-        //mDatabase = FirebaseDatabase.getInstance().getReference();
-
         firebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
