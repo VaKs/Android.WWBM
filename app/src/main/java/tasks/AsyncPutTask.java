@@ -1,4 +1,4 @@
-package POJO;
+package tasks;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -12,6 +12,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import POJO.Score;
 
 /**
  * Created by Usuario on 03/03/2018.

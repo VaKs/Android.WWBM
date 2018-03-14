@@ -1,4 +1,4 @@
-package POJO;
+package tasks;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -6,13 +6,12 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
+import POJO.ScoreList;
 import dsm.servabo.wwbm.ScoresActivity;
 
 /**

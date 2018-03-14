@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import POJO.AsyncPostTask;
+import tasks.AsyncPostTask;
 
 /**
  * Created by servabo on 12/02/2018.

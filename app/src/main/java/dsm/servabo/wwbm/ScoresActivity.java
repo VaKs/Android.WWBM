@@ -10,11 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.firebase.client.Firebase;
+import com.google.firebase.database.FirebaseDatabase;
 
-import POJO.AsyncGetTask;
-import POJO.AsyncResponse;
+import java.util.ArrayList;
+
+import tasks.AsyncGetTask;
+import tasks.AsyncGetTaskFireBaseImp;
+import tasks.AsyncResponse;
 import POJO.Score;
 import POJO.ScoreList;
 import databases.ScoreDAO;
@@ -34,6 +37,7 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
     ArrayAdapter<String> adapterLocal, adapterFriends;
     AlertDialog.Builder builder;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
@@ -49,7 +53,6 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
 
         adapterFriends = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listItemsFriends);
         listFriends.setAdapter(adapterFriends);
-
 
 
         // items para la pestaña local
@@ -74,7 +77,8 @@ public class ScoresActivity extends AppCompatActivity implements AsyncResponse {
 
         // items para la pestaña Friends
         String username = prefs.getString("Nombre","unknown");
-        new AsyncGetTask(this).execute(username);
+        //new AsyncGetTask(this).execute(username);
+        new AsyncGetTaskFireBaseImp(this).execute("Algo");
 
 
         // inicializar y pintar pestañas

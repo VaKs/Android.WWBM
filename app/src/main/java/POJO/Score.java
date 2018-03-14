@@ -6,9 +6,12 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by servabo on 28/02/2018.
  */
+@IgnoreExtraProperties
 @Entity(tableName = "Scores")
 public class Score implements Comparable<Score>{
 

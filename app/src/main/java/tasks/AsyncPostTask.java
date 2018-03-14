@@ -1,4 +1,4 @@
-package POJO;
+package tasks;
 
 import android.net.Uri;
 import android.os.AsyncTask;

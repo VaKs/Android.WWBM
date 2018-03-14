@@ -1,6 +1,7 @@
-package POJO;
+package tasks;
 
-import java.util.ArrayList;
+
+import POJO.ScoreList;
 
 /**
  * Created by Usuario on 04/03/2018.
